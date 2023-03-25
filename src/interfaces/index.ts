@@ -36,7 +36,8 @@ export interface ITableColumn<T> {
   index: number;
   // field: keyof T;
   field: string;
-  component?: React.ComponentType<any>;
+  // component?: React.ComponentType<any>;
+  component?: any;
   sortByFunction?: (row: any) => any;
   formatFunction?: (value: T) => number | string;
 }
