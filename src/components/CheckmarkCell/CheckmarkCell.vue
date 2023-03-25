@@ -1,15 +1,9 @@
 <template>
   <div :class="cellClass">
-    <!-- <p>{{affirmative ? 'YES' : 'NO'}}</p> -->
-    <!-- <IoCloseOutline /> -->
-    <!-- <Icon v-if="affirmative" icon="ic:sharp-check" /> -->
-    <Icon v-if="affirmative" icon="zondicons:checkmark" />
-    <Icon v-if="!affirmative" icon="mdi:close-thick" />
-    <!-- <Icon v-if="!affirmative" icon="ic:sharp-close" /> -->
+    <Icon v-if="affirmative" icon="icomoon-free:checkmark" />
+    <Icon v-if="!affirmative" icon="icomoon-free:cross" />
   </div>
 </template>
-
-zondicons:checkmark
 
 <script lang="ts">
 import { defineComponent } from 'vue';
@@ -49,7 +43,7 @@ export default defineComponent({
   align-items: center;
 
   svg {
-    height: 1.5rem;
+    height: 1.125rem;
     width: 2rem;
   }
 
