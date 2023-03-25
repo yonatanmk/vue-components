@@ -1,8 +1,10 @@
 <template>
   <img alt="Vue logo" src="../../assets/logo.png">
-  <FilterBar />
-  <Search label="Search Songs" placeholder="Name" :search="songSearch" @onSearch="handleSongSearch"/>
-  <p>songSearch: {{songSearch}}</p>
+  <FilterBar>
+    <Search label="Search Songs" placeholder="Name" :search="songSearch" @onSearch="handleSongSearch"/>
+  </FilterBar>
+  <!-- <Search label="Search Songs" placeholder="Name" :search="songSearch" @onSearch="handleSongSearch"/>
+  <p>songSearch: {{songSearch}}</p> -->
 </template>
 
 <script lang="ts">
@@ -25,8 +27,6 @@ export default defineComponent({
     handleSongSearch(val: string) {
       console.log('handleSongSearch: ' + val)
       this.songSearch = val
-      // console.log(target.value)
-      // this.$emit('onChange', target.value)
     }
   }
 });

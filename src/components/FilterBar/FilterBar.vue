@@ -1,7 +1,7 @@
 <template>
     <div className="FilterBar">
       <p className="FilterBar__title">Filters</p>
-      <!-- {children} -->
+      <slot />
     </div>
 </template>
 
