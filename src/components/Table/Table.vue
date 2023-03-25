@@ -4,7 +4,7 @@
         <TableRow class="row__header" :row="headerRow" :columns="headerColumns" isHeader/>
       </thead>
       <tbody>
-        <TableRow v-for="(row, i) in rows" :key="i" :row="row" :columns="columns" />
+        <TableRow v-for="(row, i) in rows" :key="i" :row="row" :columns="sortedColumns" />
       </tbody>
     </table>
 </template>
@@ -43,6 +43,9 @@ export default defineComponent({
         [this.class || '']: !!this.class,
       }
     },
+    sortedColumns() {
+      return [...this.columns].sort((a, b) => a.index > b.index ? 1 : -1);
+    },
     headerRow() {
       return this.columns.reduce((agg: Partial<ITableHeaderRow>, col) => {
         return {
@@ -62,7 +65,7 @@ export default defineComponent({
       } as Partial<ITableHeaderRow>) as ITableHeaderRow;
     },
     headerColumns() {
-      return this.columns.map(col => ({
+      return this.sortedColumns.map(col => ({
         ...col,
         component: HeaderCell,
       }))

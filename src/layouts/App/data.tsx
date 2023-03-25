@@ -1,5 +1,5 @@
 import type { IPerson, ITableColumn, ISong } from '../../interfaces'
-// import LinkCell from '../LinkCell'
+import LinkCell from '../../components/LinkCell'
 import CheckmarkCell from '../../components/CheckmarkCell'
 
 const booleanSortFunctionGenerator = (field: string) => (row: any) =>{ // FIX TS
@@ -135,28 +135,28 @@ export const peopleColumns: ITableColumn[] = [
     index: 1,
     field: 'name',
   },
-  // {
-  //   name: 'Link',
-  //   index: 7,
-  //   field: 'link',
-  //   component: LinkCell,
-  //   sortByFunction: row => row?.link?.props?.text
-  // },
-  // {
-  //   name: 'Accepted',
-  //   index: 8,
-  //   field: 'accepted',
-  //   // sortFunction
-  //   // filters
-  //   // renderComponent: true,
-  //   component: CheckmarkCell,
-  //   // sortByFunction: row => {
-  //   //   if (row?.accepted?.props?.accepted === true) return 1;
-  //   //   if (row?.accepted?.props?.accepted === false) return 2;
-  //   //   return 3
-  //   // },
-  //   sortByFunction: booleanSortFunctionGenerator('accepted')
-  // },
+  {
+    name: 'Link',
+    index: 7,
+    field: 'link',
+    component: LinkCell,
+    sortByFunction: row => row?.link?.props?.text
+  },
+  {
+    name: 'Accepted',
+    index: 8,
+    field: 'accepted',
+    // sortFunction
+    // filters
+    // renderComponent: true,
+    component: CheckmarkCell,
+    // sortByFunction: row => {
+    //   if (row?.accepted?.props?.accepted === true) return 1;
+    //   if (row?.accepted?.props?.accepted === false) return 2;
+    //   return 3
+    // },
+    sortByFunction: booleanSortFunctionGenerator('accepted')
+  },
 ];
 
 export const songRows: ISong[] = [

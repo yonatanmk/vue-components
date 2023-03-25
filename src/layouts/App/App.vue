@@ -1,10 +1,19 @@
 <template>
-  <FilterBar>
-    <Search label="Search Songs" placeholder="Name" :search="songSearch" @onSearch="handleSongSearch"/>
-  </FilterBar>
-  <Table :rows="songRows" :columns="songColumns"/>
-  <!-- <Search label="Search Songs" placeholder="Name" :search="songSearch" @onSearch="handleSongSearch"/>
-  <p>songSearch: {{songSearch}}</p> -->
+  <div class="App">
+    <FilterBar>
+      <Search label="Search People" placeholder="Name" :search="peopleSearch" @onSearch="handlePeopleSearch"/>
+    </FilterBar>
+    <div className="App__container">
+      <Table :rows="peopleRows" :columns="peopleColumns"/>
+    </div>
+    <!-- <Table :rows="peopleRows" :columns="peopleColumns"/> -->
+    <FilterBar>
+      <Search label="Search Songs" placeholder="Name" :search="songSearch" @onSearch="handleSongSearch"/>
+    </FilterBar>
+    <div className="App__container">
+      <Table :rows="songRows" :columns="songColumns"/>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -23,14 +32,19 @@ export default defineComponent({
   },
   data() {
     return {
+      peopleSearch: '',
+      peopleRows,
+      peopleColumns,
       songSearch: '',
       songRows,
       songColumns,
     }
   },
   methods: {
+    handlePeopleSearch(val: string) {
+      this.peopleSearch = val
+    },
     handleSongSearch(val: string) {
-      // console.log('handleSongSearch: ' + val)
       this.songSearch = val
     }
   }
@@ -39,17 +53,17 @@ export default defineComponent({
 
 <style lang="scss">
 #app {
-  // font-family: Avenir, Helvetica, Arial, sans-serif;
-  // -webkit-font-smoothing: antialiased;
-  // -moz-osx-font-smoothing: grayscale;
-  // text-align: center;
-  // color: #2c3e50;
-  // margin-top: 60px;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.App {
+  &__container {
+    padding: 2rem;
+  }
 }
 </style>
