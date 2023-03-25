@@ -30,7 +30,7 @@ export default defineComponent({
   },
   methods: {
     handleSongSearch(val: string) {
-      console.log('handleSongSearch: ' + val)
+      // console.log('handleSongSearch: ' + val)
       this.songSearch = val
     }
   }

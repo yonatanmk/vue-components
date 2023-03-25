@@ -1,6 +1,6 @@
 import type { IPerson, ITableColumn, ISong } from '../../interfaces'
 // import LinkCell from '../LinkCell'
-// import CheckmarkCell from '../CheckmarkCell'
+import CheckmarkCell from '../../components/CheckmarkCell'
 
 const booleanSortFunctionGenerator = (field: string) => (row: any) =>{ // FIX TS
   if (row?.[field]?.props?.affirmative === true) return 1;
@@ -235,11 +235,11 @@ export const songColumns: ITableColumn[] = [
     index: 3,
     field: 'album',
   },
-  // {
-  //   name: 'Liked',
-  //   index: 5,
-  //   field: 'liked',
-  //   component: CheckmarkCell,
-  //   sortByFunction: booleanSortFunctionGenerator('liked'),
-  // },
+  {
+    name: 'Liked',
+    index: 5,
+    field: 'liked',
+    component: CheckmarkCell,
+    sortByFunction: booleanSortFunctionGenerator('liked'),
+  },
 ];

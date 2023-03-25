@@ -24,7 +24,7 @@ export default defineComponent({
     search: String,
   },
   created() {
-    console.log({label: this.label, search: this.search, placeholder: this.placeholder})
+    // console.log({label: this.label, search: this.search, placeholder: this.placeholder})
   },
   methods: {
     handleSearch(e: Event) {

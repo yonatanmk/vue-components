@@ -18,7 +18,7 @@ export default defineComponent({
     field: String,
   },
   created() {
-    console.log('Header Cell')
+    // console.log('Header Cell')
   },
   computed: {
     cellClass() {

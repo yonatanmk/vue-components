@@ -32,8 +32,8 @@ export default defineComponent({
     isHeader: Boolean,
   },
   created() {
-    console.log('Row')
-    console.log({columns: this.columns, row: this.row})
+    // console.log('Row')
+    // console.log({columns: this.columns, row: this.row})
   },
   computed: {
     rowClass() {

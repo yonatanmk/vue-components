@@ -1,6 +1,6 @@
 <template>
   <component :is="tag" :class="cellClass">
-    <component v-if="component" :is="component" v-bind="field.props"/>
+    <component v-if="component && field" :is="component" v-bind="field.props"/>
     <p v-else>{{text}}</p>
   </component>
 </template>
@@ -32,7 +32,7 @@ export default defineComponent({
     isHeader: Boolean,
   },
   created() {
-    console.log('Cell')
+    // console.log('Cell')
   },
   computed: {
     cellClass() {
@@ -52,7 +52,7 @@ export default defineComponent({
       return this.row[this.fieldName]
     },
     text() {
-      return this.isHeader ?this.field.props.name :  this.field;
+      return this.field;
     },
   }
 });
