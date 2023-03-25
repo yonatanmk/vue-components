@@ -50,8 +50,23 @@ export default defineComponent({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.Table {
-  width: 100%;
-  border-collapse: collapse
+@import "../../styles/variables/_palette";
+@import "../../styles/variables/_mixins";
+
+.Cell {
+  @include table-cell-padding;
+  width: 100px;
+  width: auto;
+  box-sizing: border-box;;
+  border: 1px solid $table-border-gray;
+
+  p {
+    margin: 0;
+  }
+
+  &__header {
+    background-color: $table-header-gray;
+    padding: 0;
+  }
 }
 </style>
