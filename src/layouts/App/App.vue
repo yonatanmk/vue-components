@@ -1,16 +1,33 @@
 <template>
   <img alt="Vue logo" src="../../assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <FilterBar />
+  <Search label="Search Songs" placeholder="Name" :search="songSearch" @onSearch="handleSongSearch"/>
+  <p>songSearch: {{songSearch}}</p>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HelloWorld from '../../components/HelloWorld.vue';
+import FilterBar from '../../components/FilterBar';
+import Search from '../../components/Search';
 
 export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld
+    FilterBar,
+    Search
+  },
+  data() {
+    return {
+      songSearch: ''
+    }
+  },
+  methods: {
+    handleSongSearch(val: string) {
+      console.log('handleSongSearch: ' + val)
+      this.songSearch = val
+      // console.log(target.value)
+      // this.$emit('onChange', target.value)
+    }
   }
 });
 </script>
