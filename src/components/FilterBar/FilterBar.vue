@@ -1,6 +1,6 @@
 <template>
-    <div className="FilterBar">
-      <p className="FilterBar__title">Filters</p>
+    <div class="FilterBar">
+      <p class="FilterBar__title">Filters</p>
       <slot />
     </div>
 </template>
@@ -10,9 +10,7 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'FilterBar',
-  props: {
-    msg: String,
-  },
+  props: {},
 });
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-    <div className="Search">
+    <div class="Search">
       <label v-if="label" htmlFor="people-search">{{label}}</label>
       <!-- <p>{{search}}</p> -->
       <!-- <input id="people-search" type="text" value="search" onChange={handleSearch} placeholder={placeholder} /> -->

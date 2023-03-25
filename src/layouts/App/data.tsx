@@ -103,7 +103,8 @@ export const peopleRows: IPerson[] = [
   },
 ];
 
-export const peopleColumns: ITableColumn<IPerson>[] = [
+// export const peopleColumns: ITableColumn<IPerson>[] = [
+export const peopleColumns: ITableColumn[] = [
   {
     name: 'Country',
     index: 6,
@@ -205,7 +206,8 @@ export const songRows: ISong[] = [
   },
 ];
 
-export const songColumns: ITableColumn<ISong>[] = [
+// export const songColumns: ITableColumn<ISong>[] = [
+export const songColumns: ITableColumn[] = [
   {
     name: 'Artist',
     index: 2,

@@ -1,8 +1,9 @@
 <template>
-  <img alt="Vue logo" src="../../assets/logo.png">
+  <!-- <img alt="Vue logo" src="../../assets/logo.png"> -->
   <FilterBar>
     <Search label="Search Songs" placeholder="Name" :search="songSearch" @onSearch="handleSongSearch"/>
   </FilterBar>
+  <Table :rows="songRows" :columns="songColumns"/>
   <!-- <Search label="Search Songs" placeholder="Name" :search="songSearch" @onSearch="handleSongSearch"/>
   <p>songSearch: {{songSearch}}</p> -->
 </template>
@@ -11,16 +12,21 @@
 import { defineComponent } from 'vue';
 import FilterBar from '../../components/FilterBar';
 import Search from '../../components/Search';
+import Table from '../../components/Table';
+import { peopleRows, peopleColumns, songRows, songColumns } from './data';
 
 export default defineComponent({
   name: 'App',
   components: {
     FilterBar,
-    Search
+    Search,
+    Table,
   },
   data() {
     return {
-      songSearch: ''
+      songSearch: '',
+      songRows,
+      songColumns,
     }
   },
   methods: {

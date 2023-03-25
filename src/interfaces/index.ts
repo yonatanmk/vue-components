@@ -31,7 +31,7 @@ export interface ITableHeaderRow extends IPerson {
 
 export type ISortOrder = 'asc' | 'desc';
 
-export interface ITableColumn<T> {
+export interface ITableColumn {
   name: string;
   index: number;
   // field: keyof T;
@@ -39,7 +39,7 @@ export interface ITableColumn<T> {
   // component?: React.ComponentType<any>;
   component?: any;
   sortByFunction?: (row: any) => any;
-  formatFunction?: (value: T) => number | string;
+  formatFunction?: (value: any) => number | string;
 }
 
 export interface ITableCellComponent {
