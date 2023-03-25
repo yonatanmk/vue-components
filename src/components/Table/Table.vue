@@ -1,16 +1,9 @@
 <template>
     <table :class="tableClass">
       <thead>
-        <!-- <TableSortContext.Provider value={{ sortPredicate, setSortPredicate, sortOrder, setSortOrder }}>
-          <Row className="row__header" row={headerRow} columns={headerColumns} isHeader/>
-        </TableSortContext.Provider> -->
-        <TableRow class="row__header" :row="headerRow" :columns="columns" isHeader/>
+        <TableRow class="row__header" :row="headerRow" :columns="headerColumns" isHeader/>
       </thead>
       <tbody>
-        <!-- <tr>
-          <td>Hello</td>
-        </tr> -->
-        <!-- {rows.map((row, index) => <Row key={index} row={row} columns={sortedColumns} />)} -->
         <TableRow v-for="(row, i) in rows" :key="i" :row="row" :columns="columns" />
       </tbody>
     </table>
@@ -20,6 +13,7 @@
 import { defineComponent, PropType } from 'vue';
 import type { ITableColumn, ITableHeaderRow, ISortOrder, IFilter } from '../../interfaces'
 import TableRow from '../TableRow';
+import HeaderCell from '../HeaderCell';
 
 export default defineComponent({
   name: 'FilterBar',
@@ -67,6 +61,12 @@ export default defineComponent({
         // sortOrder,
       } as Partial<ITableHeaderRow>) as ITableHeaderRow;
     },
+    headerColumns() {
+      return this.columns.map(col => ({
+        ...col,
+        component: HeaderCell,
+      }))
+    }
   },
 });
 </script>

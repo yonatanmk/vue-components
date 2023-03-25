@@ -1,13 +1,16 @@
 <template>
-  <th v-if="isHeader" :class="cellClass"><p>{{text.props.name}}</p></th>
-  <td v-else :class="cellClass">
-    <p>{{text}}</p>
-  </td>
+  <component :is="tag" :class="cellClass">
+    <component v-if="component" :is="component" v-bind="field.props"/>
+    <p v-else>{{text}}</p>
+  </component>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import type { ITableColumn, ITableHeaderRow, ISortOrder, IFilter } from '../../interfaces'
+// import HeaderCell from '../HeaderCell';
+
+// type IHeaderCellComponent = InstanceType<typeof HeaderCell>
 
 export default defineComponent({
   name: 'TableCell',
@@ -25,6 +28,7 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    component: Object as PropType<any>,
     isHeader: Boolean,
   },
   created() {
@@ -38,11 +42,17 @@ export default defineComponent({
         Cell__header: this.isHeader,
       }
     },
+    tag() {
+      return this.isHeader ? 'th' : 'td'
+    },
+    // subComponent() {
+    //   return this.component ? this.component : null;
+    // },
     field() {
       return this.row[this.fieldName]
     },
     text() {
-      return this.field;
+      return this.isHeader ?this.field.props.name :  this.field;
     },
   }
 });

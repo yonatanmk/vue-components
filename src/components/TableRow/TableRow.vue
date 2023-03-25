@@ -6,6 +6,7 @@
         :fieldName="col.field"
         :row="row"
         :column="col"
+        :component="col.component"
         :isHeader="isHeader"
       />
     </tr>
@@ -32,7 +33,7 @@ export default defineComponent({
   },
   created() {
     console.log('Row')
-    console.log({columns: this.columns})
+    console.log({columns: this.columns, row: this.row})
   },
   computed: {
     rowClass() {
