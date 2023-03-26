@@ -4,13 +4,13 @@
       <Search label="Search People" placeholder="Name" :search="peopleSearch" @onSearch="handlePeopleSearch"/>
     </FilterBar>
     <div className="App__container">
-      <Table :rows="peopleRows" :columns="peopleColumns" :filters="peopleFilters" defaultSortField="name" />
+      <Table :rows="peopleRows" :columns="peopleColumns" :filters="peopleFilters" defaultSortField="name" backupSortField="name"/>
     </div>
     <FilterBar>
       <Search label="Search Songs" placeholder="Name" :search="songSearch" @onSearch="handleSongSearch"/>
     </FilterBar>
     <div className="App__container">
-      <Table :rows="songRows" :columns="songColumns" :filters="songFilters" defaultSortField="name" />
+      <Table :rows="songRows" :columns="songColumns" :filters="songFilters" defaultSortField="name" backupSortField="name"/>
     </div>
   </div>
 </template>
