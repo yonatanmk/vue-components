@@ -35,24 +35,21 @@ export default defineComponent({
     // console.log('Cell')
   },
   computed: {
-    cellClass() {
+    cellClass(): {[key: string]: boolean} {
       return {
         Cell: true,
         [this.class || '']: !!this.class,
         Cell__header: this.isHeader,
       }
     },
-    tag() {
+    tag(): string {
       return this.isHeader ? 'th' : 'td'
     },
-    // subComponent() {
-    //   return this.component ? this.component : null;
-    // },
-    field() {
+    field(): string {
       return this.row[this.fieldName]
     },
-    text() {
-      return this.field;
+    text(): string | number {
+      return this.column.formatFunction ? this.column.formatFunction(this.row) : this.field;
     },
   }
 });

@@ -36,7 +36,7 @@ export default defineComponent({
     // console.log({columns: this.columns, row: this.row})
   },
   computed: {
-    rowClass() {
+    rowClass(): {[key: string]: boolean} {
       return {
         Row: true,
         [this.class || '']: !!this.class,

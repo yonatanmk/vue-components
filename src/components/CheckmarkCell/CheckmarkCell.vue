@@ -21,7 +21,7 @@ export default defineComponent({
     // console.log('CheckmarkCell')
   },
   computed: {
-    cellClass() {
+    cellClass() : {[key: string]: boolean} {
       return {
         CheckmarkCell: true,
         CheckmarkCell__affirmative: this.affirmative,

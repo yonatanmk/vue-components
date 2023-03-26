@@ -43,19 +43,19 @@ export default defineComponent({
     // console.log({rows: this.rows})
   },
   computed: {
-    tableClass() {
+    tableClass(): {[key: string]: boolean} {
       return {
         Table: true,
         [this.class || '']: !!this.class,
       }
     },
-    sortedColumns() {
+    sortedColumns(): ITableColumn[] {
       return [...this.columns].sort((a, b) => a.index > b.index ? 1 : -1);
     },
-    filteredRows() {
+    filteredRows(): any[] {
       return this.filters && this.filters.length > 0 ? filterRows(this.rows, this.filters)  : this.rows;
     },
-    headerRow() {
+    headerRow(): ITableHeaderRow {
       return this.columns.reduce((agg: Partial<ITableHeaderRow>, col) => {
         return {
           ...agg,
@@ -73,7 +73,7 @@ export default defineComponent({
         // sortOrder,
       } as Partial<ITableHeaderRow>) as ITableHeaderRow;
     },
-    headerColumns() {
+    headerColumns(): ITableColumn[] {
       return this.sortedColumns.map(col => ({
         ...col,
         component: HeaderCell,

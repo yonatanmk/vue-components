@@ -21,7 +21,7 @@ export default defineComponent({
     // console.log('Header Cell')
   },
   computed: {
-    cellClass() {
+    cellClass(): {[key: string]: boolean} {
       return {
         HeaderCell: true,
       }
