@@ -1,7 +1,4 @@
 <template>
-    <!-- <p>Sort Pred: {{sortField}}</p> -->
-    <!-- <p>Sort Order: {{sortOrder}}</p> -->
-    <!-- <button @click="toggleSortOrder">TOGGLE</button> -->
     <table :class="tableClass">
       <thead>
         <TableRow 
@@ -111,9 +108,6 @@ export default defineComponent({
     setSortField(field : string) {
       this.sortField = field;
     },
-    // toggleSortOrder() {
-    //   this.sortOrder = this.sortOrder === SORT_ORDERS.ASC ? SORT_ORDERS.DESC : SORT_ORDERS.ASC
-    // }
   },
   provide() {
     return {

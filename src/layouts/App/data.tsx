@@ -146,15 +146,7 @@ export const peopleColumns: ITableColumn[] = [
     name: 'Accepted',
     index: 8,
     field: 'accepted',
-    // sortFunction
-    // filters
-    // renderComponent: true,
     component: CheckmarkCell,
-    // sortByFunction: row => {
-    //   if (row?.accepted?.props?.accepted === true) return 1;
-    //   if (row?.accepted?.props?.accepted === false) return 2;
-    //   return 3
-    // },
     sortByFunction: booleanSortFunctionGenerator('accepted')
   },
 ];
