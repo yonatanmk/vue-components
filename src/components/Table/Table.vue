@@ -4,7 +4,7 @@
         <TableRow class="row__header" :row="headerRow" :columns="headerColumns" isHeader/>
       </thead>
       <tbody>
-        <TableRow v-for="(row, i) in rows" :key="i" :row="row" :columns="sortedColumns" />
+        <TableRow v-for="(row, i) in filteredRows" :key="i" :row="row" :columns="sortedColumns" />
       </tbody>
     </table>
 </template>
@@ -14,6 +14,7 @@ import { defineComponent, PropType } from 'vue';
 import type { ITableColumn, ITableHeaderRow, ISortOrder, IFilter } from '../../interfaces'
 import TableRow from '../TableRow';
 import HeaderCell from '../HeaderCell';
+import { SORT_ORDERS, filterRows } from '../../util';
 
 export default defineComponent({
   name: 'FilterBar',
@@ -24,17 +25,22 @@ export default defineComponent({
     class: String,
     rows: {
       type: Array,
-      // required: true,
-      default: () => []
+      required: true,
+      // default: () => []
     } ,
     columns: {
       type: Object as PropType<ITableColumn[]>,
       required: true,
     } ,
+    filters: {
+      type: Array as PropType<IFilter[]>,
+      // required: true,
+      default: () => []
+    } ,
   },
   created() {
     console.log('TABLE')
-    console.log({rows: this.rows})
+    // console.log({rows: this.rows})
   },
   computed: {
     tableClass() {
@@ -45,6 +51,9 @@ export default defineComponent({
     },
     sortedColumns() {
       return [...this.columns].sort((a, b) => a.index > b.index ? 1 : -1);
+    },
+    filteredRows() {
+      return this.filters && this.filters.length > 0 ? filterRows(this.rows, this.filters)  : this.rows;
     },
     headerRow() {
       return this.columns.reduce((agg: Partial<ITableHeaderRow>, col) => {
