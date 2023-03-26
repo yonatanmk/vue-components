@@ -1,10 +1,12 @@
 <template>
+    <!-- <p>Sort Order: {{sortOrder}}</p> -->
+    <!-- <button @click="toggleSortOrder">TOGGLE</button> -->
     <table :class="tableClass">
       <thead>
-        <TableRow class="row__header" :row="headerRow" :columns="headerColumns" isHeader/>
+        <TableRow class="row__header" :row="headerRow" :columns="headerColumns" isHeader @setSortOrder="setSortOrder"/>
       </thead>
       <tbody>
-        <TableRow v-for="(row, i) in filteredRows" :key="i" :row="row" :columns="sortedColumns" />
+        <TableRow v-for="(row, i) in filteredRows" :key="i" :row="row" :columns="sortedColumns"/>
       </tbody>
     </table>
 </template>
@@ -41,6 +43,11 @@ export default defineComponent({
   created() {
     console.log('TABLE')
     // console.log({rows: this.rows})
+  },
+  data() {
+    return {
+      sortOrder: SORT_ORDERS.ASC as ISortOrder,
+    }
   },
   computed: {
     tableClass(): {[key: string]: boolean} {
@@ -80,6 +87,21 @@ export default defineComponent({
       }))
     }
   },
+  methods: {
+    setSortOrder(order : ISortOrder) {
+      // console.log('HANDLE EVENT SET SORT ORDER: ' + order)
+      this.sortOrder = order;
+    },
+    // toggleSortOrder() {
+    //   this.sortOrder = this.sortOrder === SORT_ORDERS.ASC ? SORT_ORDERS.DESC : SORT_ORDERS.ASC
+    // }
+  },
+  provide() {
+    return {
+      getSortOrder: () => this.sortOrder,
+      setSortOrder: this.setSortOrder,
+    }
+  }
 });
 </script>
 

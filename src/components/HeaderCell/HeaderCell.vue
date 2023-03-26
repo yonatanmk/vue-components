@@ -2,23 +2,29 @@
   <div :class="cellClass">
     <button :onClick="onHeaderClick">
       <p>{{name}}</p>
-      <!-- <ArrowIcon /> -->
+      <Icon v-if="true" :icon="arrowIcon" />
     </button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import type { ITableColumn, ITableHeaderRow, ISortOrder, IFilter } from '../../interfaces'
+import { defineComponent } from 'vue';
+import { Icon } from '@iconify/vue'
+import { SORT_ORDERS } from '../../util';
 
 export default defineComponent({
   name: 'HeaderCell',
+  components: {
+    Icon
+  },
   props: {
     name: String,
     field: String,
   },
+  inject: ['getSortOrder', 'setSortOrder'],
   created() {
     // console.log('Header Cell')
+    // console.log(this.sortOrder)
   },
   computed: {
     cellClass(): {[key: string]: boolean} {
@@ -26,12 +32,23 @@ export default defineComponent({
         HeaderCell: true,
       }
     },
+    arrowIcon(): string {
+      return this.sortOrder === SORT_ORDERS.ASC ? 'bi:arrow-down' : 'bi:arrow-up';
+    },
+    sortOrder(): string {
+      return (this.getSortOrder as () => string)()
+    }
   },
   methods: {
     onHeaderClick() {
-      // const target = e.target as HTMLInputElement
-      // this.$emit('onSearch', target.value)
       console.log('HEADER CLICK: ' + this.name)
+      this.toggleSortOrder()
+    },
+    toggleSortOrder() {
+      this.emitSortOrder(this.sortOrder === SORT_ORDERS.ASC ? SORT_ORDERS.DESC : SORT_ORDERS.ASC)
+    },
+    emitSortOrder(arg: string) {
+      (this.setSortOrder as (arg: string) => void)(arg)
     }
   }
 });
