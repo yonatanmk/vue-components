@@ -4,14 +4,13 @@
       <Search label="Search People" placeholder="Name" :search="peopleSearch" @onSearch="handlePeopleSearch"/>
     </FilterBar>
     <div className="App__container">
-      <Table :rows="peopleRows" :columns="peopleColumns" :filters="peopleFilters"/>
+      <Table :rows="peopleRows" :columns="peopleColumns" :filters="peopleFilters" defaultSortField="name" />
     </div>
-    <!-- <Table :rows="peopleRows" :columns="peopleColumns"/> -->
     <FilterBar>
       <Search label="Search Songs" placeholder="Name" :search="songSearch" @onSearch="handleSongSearch"/>
     </FilterBar>
     <div className="App__container">
-      <Table :rows="songRows" :columns="songColumns" :filters="songFilters"/>
+      <Table :rows="songRows" :columns="songColumns" :filters="songFilters" defaultSortField="name" />
     </div>
   </div>
 </template>
@@ -22,7 +21,7 @@ import FilterBar from '../../components/FilterBar';
 import Search from '../../components/Search';
 import Table from '../../components/Table';
 import { peopleRows, peopleColumns, songRows, songColumns } from './data';
-import type { ITableColumn, ITableHeaderRow, ISortOrder, IFilter } from '../../interfaces'
+import type { ITableColumn, ISortOrder, IFilter } from '../../interfaces'
 import { FILTER_TYPES } from '../../util';
 
 export default defineComponent({

@@ -1,9 +1,17 @@
 <template>
+    <!-- <p>Sort Pred: {{sortField}}</p> -->
     <!-- <p>Sort Order: {{sortOrder}}</p> -->
     <!-- <button @click="toggleSortOrder">TOGGLE</button> -->
     <table :class="tableClass">
       <thead>
-        <TableRow class="row__header" :row="headerRow" :columns="headerColumns" isHeader @setSortOrder="setSortOrder"/>
+        <TableRow 
+          class="row__header" 
+          :row="headerRow" 
+          :columns="headerColumns" 
+          isHeader 
+          @setSortOrder="setSortOrder" 
+          @setSortField="setSortField"
+        />
       </thead>
       <tbody>
         <TableRow v-for="(row, i) in filteredRows" :key="i" :row="row" :columns="sortedColumns"/>
@@ -13,7 +21,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import type { ITableColumn, ITableHeaderRow, ISortOrder, IFilter } from '../../interfaces'
+import type { ITableColumn, ISortOrder, IFilter } from '../../interfaces'
 import TableRow from '../TableRow';
 import HeaderCell from '../HeaderCell';
 import { SORT_ORDERS, filterRows } from '../../util';
@@ -39,6 +47,7 @@ export default defineComponent({
       // required: true,
       default: () => []
     } ,
+    defaultSortField: String,
   },
   created() {
     console.log('TABLE')
@@ -47,6 +56,7 @@ export default defineComponent({
   data() {
     return {
       sortOrder: SORT_ORDERS.ASC as ISortOrder,
+      sortField: this.defaultSortField || this.columns[0]?.name,
     }
   },
   computed: {
@@ -62,23 +72,19 @@ export default defineComponent({
     filteredRows(): any[] {
       return this.filters && this.filters.length > 0 ? filterRows(this.rows, this.filters)  : this.rows;
     },
-    headerRow(): ITableHeaderRow {
-      return this.columns.reduce((agg: Partial<ITableHeaderRow>, col) => {
+    headerRow(): any {
+      return this.columns.reduce((agg: any, col) => {
         return {
           ...agg,
           [col.field]: {
             props: {
               name: col.name,
               field: col.field,
-              // sortPredicate,
-              // sortOrder,
             }
           },
         }
       }, {
-        // sortPredicate,
-        // sortOrder,
-      } as Partial<ITableHeaderRow>) as ITableHeaderRow;
+      } as any);
     },
     headerColumns(): ITableColumn[] {
       return this.sortedColumns.map(col => ({
@@ -89,8 +95,10 @@ export default defineComponent({
   },
   methods: {
     setSortOrder(order : ISortOrder) {
-      // console.log('HANDLE EVENT SET SORT ORDER: ' + order)
       this.sortOrder = order;
+    },
+    setSortField(field : string) {
+      this.sortField = field;
     },
     // toggleSortOrder() {
     //   this.sortOrder = this.sortOrder === SORT_ORDERS.ASC ? SORT_ORDERS.DESC : SORT_ORDERS.ASC
@@ -100,6 +108,8 @@ export default defineComponent({
     return {
       getSortOrder: () => this.sortOrder,
       setSortOrder: this.setSortOrder,
+      getSortField: () => this.sortField,
+      setSortField: this.setSortField,
     }
   }
 });

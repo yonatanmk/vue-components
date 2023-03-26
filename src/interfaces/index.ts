@@ -19,13 +19,13 @@ export interface ISong {
   liked?: ITableCellComponent;
 }
 
-export interface ITableHeaderRow extends IPerson {
-  sortPredicate?: string;
-  sortOrder?: ISortOrder;
-}
+// export interface ITableHeaderRow extends IPerson {
+  // sortField?: string;
+  // sortOrder?: ISortOrder;
+// }
 
 // export interface ITableRow extends IPerson {
-//   sortPredicate?: string;
+//   sortField?: string;
 //   sortOrder?: ISortOrder;
 // }
 

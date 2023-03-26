@@ -2,7 +2,7 @@
   <div :class="cellClass">
     <button :onClick="onHeaderClick">
       <p>{{name}}</p>
-      <Icon v-if="true" :icon="arrowIcon" />
+      <Icon v-if="isSorted" :icon="arrowIcon" />
     </button>
   </div>
 </template>
@@ -11,6 +11,7 @@
 import { defineComponent } from 'vue';
 import { Icon } from '@iconify/vue'
 import { SORT_ORDERS } from '../../util';
+import type { ISortOrder } from '../../interfaces'
 
 export default defineComponent({
   name: 'HeaderCell',
@@ -19,9 +20,12 @@ export default defineComponent({
   },
   props: {
     name: String,
-    field: String,
+    field: {
+      type: String,
+      required: true,
+    },
   },
-  inject: ['getSortOrder', 'setSortOrder'],
+  inject: ['getSortOrder', 'setSortOrder', 'getSortField', 'setSortField'],
   created() {
     // console.log('Header Cell')
     // console.log(this.sortOrder)
@@ -35,20 +39,35 @@ export default defineComponent({
     arrowIcon(): string {
       return this.sortOrder === SORT_ORDERS.ASC ? 'bi:arrow-down' : 'bi:arrow-up';
     },
-    sortOrder(): string {
-      return (this.getSortOrder as () => string)()
+    sortOrder(): ISortOrder {
+      return (this.getSortOrder as () => ISortOrder)()
+    },
+    sortField(): string {
+      return (this.getSortField as () => string)()
+    },
+    isSorted(): boolean {
+      return this.field === this.sortField;
     }
   },
   methods: {
     onHeaderClick() {
-      console.log('HEADER CLICK: ' + this.name)
-      this.toggleSortOrder()
+      // console.log('HEADER CLICK: ' + this.name)
+      // this.toggleSortOrder()
+      if (this.isSorted) {
+        this.toggleSortOrder()
+      } else {
+        this.emitSortField(this.field)
+        this.emitSortOrder(SORT_ORDERS.ASC)
+      }
     },
     toggleSortOrder() {
       this.emitSortOrder(this.sortOrder === SORT_ORDERS.ASC ? SORT_ORDERS.DESC : SORT_ORDERS.ASC)
     },
-    emitSortOrder(arg: string) {
-      (this.setSortOrder as (arg: string) => void)(arg)
+    emitSortOrder(arg: ISortOrder) {
+      (this.setSortOrder as (arg: ISortOrder) => void)(arg)
+    },
+    emitSortField(arg: string) {
+      (this.setSortField as (arg: string) => void)(arg)
     }
   }
 });
