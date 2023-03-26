@@ -2,6 +2,7 @@
   <div class="App">
     <FilterBar>
       <Search label="Search People" placeholder="Name" :search="peopleSearch" @onSearch="handlePeopleSearch"/>
+      <Multiselect v-model="countryFilters" :options="countryOptions" />
     </FilterBar>
     <div className="App__container">
       <Table :rows="peopleRows" :columns="peopleColumns" :filters="peopleFilters" defaultSortField="name" backupSortField="name"/>
@@ -17,12 +18,15 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import uniq from 'lodash/uniq';
 import FilterBar from '../../components/FilterBar';
 import Search from '../../components/Search';
 import Table from '../../components/Table';
 import { peopleRows, peopleColumns, songRows, songColumns } from './data';
 import type { ITableColumn, ISortOrder, IFilter } from '../../interfaces'
 import { FILTER_TYPES } from '../../util';
+// import Multiselect from 'vue-multiselect'
+import Multiselect from '@vueform/multiselect'
 
 export default defineComponent({
   name: 'App',
@@ -30,6 +34,7 @@ export default defineComponent({
     FilterBar,
     Search,
     Table,
+    Multiselect,
   },
   data() {
     return {
@@ -39,7 +44,11 @@ export default defineComponent({
       songSearch: '',
       songRows,
       songColumns,
+      countryFilters: [],
     }
+  },
+  mounted() {
+    console.log(this.countryOptions)
   },
   computed: {
     songFilters(): IFilter[] {
@@ -59,7 +68,13 @@ export default defineComponent({
           value: this.peopleSearch,
         },
       ];
-    } 
+    },
+    countryOptions() {
+      return uniq(peopleRows.map(row => row.country)).map(value => ({
+        label: value,
+        value,
+      }));
+    }
   },
   methods: {
     handlePeopleSearch(val: string) {
