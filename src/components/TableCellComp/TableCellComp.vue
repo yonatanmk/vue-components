@@ -21,9 +21,9 @@ interface ITableCellProps {
 const props = defineProps<ITableCellProps>();
 
 const cellClass = computed(() => ({
-  Cell: true,
+  CellComp: true,
   [props.className || '']: !!props.className,
-  Cell__header: !!props.isHeader,
+  CellComp__header: !!props.isHeader,
 }))
 const tag = computed(() => props.isHeader ? 'th' : 'td')
 const field = computed(() => props.row[props.fieldName])
@@ -35,7 +35,7 @@ const text = computed(() => props.column.formatFunction ? props.column.formatFun
 @import "../../styles/variables/_palette";
 @import "../../styles/variables/_mixins";
 
-.Cell {
+.CellComp {
   @include table-cell-padding;
   width: 100px;
   width: auto;

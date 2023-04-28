@@ -21,7 +21,7 @@ import { defineProps, ref, computed, provide } from 'vue';
 import orderBy from 'lodash/orderBy';
 import type { ITableColumn, ISortOrder, IFilter } from '../../interfaces'
 import TableRowComp from '../TableRowComp';
-import HeaderCell from '../HeaderCell';
+import HeaderCellComp from '../HeaderCellComp';
 import { SORT_ORDERS, filterRows } from '../../util';
 
 interface ITableProps {
@@ -40,7 +40,7 @@ const sortOrder = ref(SORT_ORDERS.ASC as ISortOrder)
 const sortField = ref(props.defaultSortField || props.columns[0]?.name)
 
 const tableClass = computed(() => ({
-  Table: true,
+  TableComp: true,
   [props.className || '']: !!props.className,
 }))
 
@@ -64,7 +64,7 @@ const headerRow = computed(() => props.columns.reduce((agg: any, col) => ({
 }), {} as any))
 const headerColumns = computed(() => sortedColumns.value.map(col => ({
   ...col,
-  component: HeaderCell,
+  component: HeaderCellComp,
 })))
 
 const setSortOrder = (order : ISortOrder) => {
@@ -84,7 +84,7 @@ provide('setSortField', setSortField)
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.Table {
+.TableComp {
   width: 100%;
   border-collapse: collapse
 }

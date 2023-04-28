@@ -28,7 +28,7 @@ interface IRowProps {
 const props = defineProps<IRowProps>();
 
 const rowClass = computed(() => ({
-  Row: true,
+  RowComp: true,
   [props.className || '']: !!props.className,
 }))
 
