@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, ref, computed, inject } from 'vue';
+import { defineProps, computed, inject, Ref } from 'vue';
 import { Icon } from '@iconify/vue'
 import { SORT_ORDERS } from '../../util';
 import type { ISortOrder } from '../../interfaces'
@@ -19,10 +19,12 @@ interface IHeaderCellProps {
 }
 
 interface ISortProps {
-  getSortOrder: () => ISortOrder,
-  setSortOrder: (arg: ISortOrder) => void,
-  getSortField: () =>string,
-  setSortField: (arg: string) => void,
+  sortOrder: Ref<ISortOrder>;
+  // getSortOrder: () => ISortOrder;
+  setSortOrder: (arg: ISortOrder) => void;
+  // getSortField: () => string;
+  sortField: Ref<string>;
+  setSortField: (arg: string) => void;
 }
 
 const props = defineProps<IHeaderCellProps>();
@@ -32,14 +34,14 @@ const props = defineProps<IHeaderCellProps>();
 // const getSortField = inject('getSortField') as () => string
 // const setSortField = inject('setSortField') as (arg: string) => void
 
-const { getSortOrder, setSortOrder, getSortField, setSortField } = inject('sortProps') as ISortProps
+const { sortOrder, setSortOrder, sortField, setSortField } = inject('sortProps') as ISortProps
 
 const cellClass = computed(() => ({
   HeaderCellComp: true,
 }))
 
-const sortOrder = computed(() => getSortOrder())
-const sortField = computed(() => getSortField())
+// const sortOrder = computed(() => getSortOrder())
+// const sortField = computed(() => getSortField())
 const isSorted = computed(() => props.field === sortField.value)
 const arrowIcon = computed(() => sortOrder.value === SORT_ORDERS.ASC ? 'bi:arrow-down' : 'bi:arrow-up')
 

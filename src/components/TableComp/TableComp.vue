@@ -81,9 +81,11 @@ const setSortField = (field : string) => {
 // provide('setSortField', setSortField)
 
 provide('sortProps', {
-  getSortOrder: () => sortOrder.value,
+  // getSortOrder: () => sortOrder.value,
+  sortOrder,
   setSortOrder: setSortOrder,
-  getSortField: () => sortField.value,
+  sortField,
+  // getSortField: () => sortField.value,
   setSortField: setSortField,
 })
 
