@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import type { ITableColumn, ISortOrder, IFilter } from '../../interfaces';
+import type { ITableColumn } from '../../interfaces';
 import TableCell from '../TableCell';
 
 export default defineComponent({

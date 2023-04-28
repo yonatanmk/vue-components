@@ -1,7 +1,7 @@
 <template>
     <table :class="tableClass">
       <thead>
-        <TableRow 
+        <TableRowComp 
           className="row__header" 
           :row="headerRow" 
           :columns="headerColumns" 
@@ -11,7 +11,7 @@
         />
       </thead>
       <tbody>
-        <TableRow v-for="(row, i) in sortedRows" :key="i" :row="row" :columns="sortedColumns"/>
+        <TableRowComp v-for="(row, i) in sortedRows" :key="i" :row="row" :columns="sortedColumns"/>
       </tbody>
     </table>
 </template>
@@ -20,7 +20,7 @@
 import { defineProps, ref, computed, provide } from 'vue';
 import orderBy from 'lodash/orderBy';
 import type { ITableColumn, ISortOrder, IFilter } from '../../interfaces'
-import TableRow from '../TableRow';
+import TableRowComp from '../TableRowComp';
 import HeaderCell from '../HeaderCell';
 import { SORT_ORDERS, filterRows } from '../../util';
 
