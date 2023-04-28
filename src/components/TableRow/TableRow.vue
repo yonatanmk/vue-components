@@ -23,7 +23,7 @@ export default defineComponent({
     TableCell,
   },
   props: {
-    class: String,
+    className: String,
     row: Object,
     columns: {
       type: Object as PropType<ITableColumn[]>,
@@ -39,7 +39,7 @@ export default defineComponent({
     rowClass(): {[key: string]: boolean} {
       return {
         Row: true,
-        [this.class || '']: !!this.class,
+        [this.className || '']: !!this.className,
       }
     },
   }

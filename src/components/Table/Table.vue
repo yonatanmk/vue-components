@@ -2,7 +2,7 @@
     <table :class="tableClass">
       <thead>
         <TableRow 
-          class="row__header" 
+          className="row__header" 
           :row="headerRow" 
           :columns="headerColumns" 
           isHeader 
@@ -25,12 +25,12 @@ import HeaderCell from '../HeaderCell';
 import { SORT_ORDERS, filterRows } from '../../util';
 
 export default defineComponent({
-  name: 'FilterBar',
+  name: 'Table',
   components: {
     TableRow,
   },
   props: {
-    class: String,
+    className: String,
     rows: {
       type: Array,
       required: true,
@@ -62,7 +62,7 @@ export default defineComponent({
     tableClass(): {[key: string]: boolean} {
       return {
         Table: true,
-        [this.class || '']: !!this.class,
+        [this.className || '']: !!this.className,
       }
     },
     sortedColumns(): ITableColumn[] {

@@ -1,13 +1,13 @@
 <template>
   <div class="TableLayout">
     <FilterBar>
-      <Search label="Search People" placeholder="Name" :search="peopleSearch" @onSearch="handlePeopleSearch"/>
+      <SearchInput label="Search People" placeholder="Name" :search="peopleSearch" @onSearch="handlePeopleSearch"/>
     </FilterBar>
     <div className="TableLayout__container">
       <Table :rows="peopleRows" :columns="peopleColumns" :filters="peopleFilters" defaultSortField="name" backupSortField="name"/>
     </div>
     <FilterBar>
-      <Search label="Search Songs" placeholder="Name" :search="songSearch" @onSearch="handleSongSearch"/>
+      <SearchInput label="Search Songs" placeholder="Name" :search="songSearch" @onSearch="handleSongSearch"/>
     </FilterBar>
     <div className="TableLayout__container">
       <Table :rows="songRows" :columns="songColumns" :filters="songFilters" defaultSortField="name" backupSortField="name"/>
@@ -18,7 +18,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import FilterBar from '../../components/FilterBar';
-import Search from '../../components/Search';
+import SearchInput from '../../components/SearchInput';
 import Table from '../../components/Table';
 import { peopleRows, peopleColumns, songRows, songColumns } from './data';
 import type { ITableColumn, ISortOrder, IFilter } from '../../interfaces'
@@ -28,7 +28,7 @@ export default defineComponent({
   name: 'TableLayout',
   components: {
     FilterBar,
-    Search,
+    SearchInput,
     Table,
   },
   data() {

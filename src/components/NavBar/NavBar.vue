@@ -31,6 +31,7 @@
 //     }
 //   }
 // });
+console.log('navbar')
 </script>
 
 <script lang="ts" setup>

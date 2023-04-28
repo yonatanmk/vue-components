@@ -17,7 +17,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'FilterBar',
+  name: 'SearchInput',
   props: {
     label: String,
     placeholder: String,
