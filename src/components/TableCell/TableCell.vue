@@ -7,15 +7,12 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import type { ITableColumn, ISortOrder, IFilter } from '../../interfaces'
-// import HeaderCell from '../HeaderCell';
-
-// type IHeaderCellComponent = InstanceType<typeof HeaderCell>
+import type { ITableColumn } from '../../interfaces'
 
 export default defineComponent({
   name: 'TableCell',
   props: {
-    class: String,
+    className: String,
     row: {
       type: Object,
       required: true,
@@ -38,7 +35,7 @@ export default defineComponent({
     cellClass(): {[key: string]: boolean} {
       return {
         Cell: true,
-        [this.class || '']: !!this.class,
+        [this.className || '']: !!this.className,
         Cell__header: this.isHeader,
       }
     },

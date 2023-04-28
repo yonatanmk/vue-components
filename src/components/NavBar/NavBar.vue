@@ -6,7 +6,7 @@
     </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 // import { defineComponent } from 'vue';
 // import { useRoute } from 'vue-router';
 // import { Icon } from '@iconify/vue'
@@ -31,10 +31,7 @@
 //     }
 //   }
 // });
-console.log('navbar')
-</script>
 
-<script lang="ts" setup>
 import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { Icon } from '@iconify/vue'

@@ -1,6 +1,6 @@
 <template>
     <tr :class="rowClass">
-      <TableCell 
+      <TableCellComp 
         v-for="(col, i) in columns"
         :key="i"
         :fieldName="col.field"
@@ -16,13 +16,13 @@
 <script lang="ts" setup>
 import { defineProps, computed } from 'vue';
 import type { ITableColumn } from '../../interfaces';
-import TableCell from '../TableCell';
+import TableCellComp from '../TableCellComp';
 
 interface IRowProps {
   className?: string;
   row: any;
   columns: ITableColumn[];
-  isHeader: boolean
+  isHeader?: boolean
 }
 
 const props = defineProps<IRowProps>();
