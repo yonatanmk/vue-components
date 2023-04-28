@@ -75,10 +75,17 @@ const setSortField = (field : string) => {
   sortField.value = field;
 }
 
-provide('getSortOrder', () => sortOrder.value)
-provide('setSortOrder', setSortOrder)
-provide('getSortField', () => sortField.value)
-provide('setSortField', setSortField)
+// provide('getSortOrder', () => sortOrder.value)
+// provide('setSortOrder', setSortOrder)
+// provide('getSortField', () => sortField.value)
+// provide('setSortField', setSortField)
+
+provide('sortProps', {
+  getSortOrder: () => sortOrder.value,
+  setSortOrder: setSortOrder,
+  getSortField: () => sortField.value,
+  setSortField: setSortField,
+})
 
 </script>
 

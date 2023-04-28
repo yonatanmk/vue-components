@@ -18,12 +18,21 @@ interface IHeaderCellProps {
   field: string;
 }
 
+interface ISortProps {
+  getSortOrder: () => ISortOrder,
+  setSortOrder: (arg: ISortOrder) => void,
+  getSortField: () =>string,
+  setSortField: (arg: string) => void,
+}
+
 const props = defineProps<IHeaderCellProps>();
 
-const getSortOrder = inject('getSortOrder') as () => ISortOrder
-const setSortOrder = inject('setSortOrder') as (arg: ISortOrder) => void
-const getSortField = inject('getSortField') as () => string
-const setSortField = inject('setSortField') as (arg: string) => void
+// const getSortOrder = inject('getSortOrder') as () => ISortOrder
+// const setSortOrder = inject('setSortOrder') as (arg: ISortOrder) => void
+// const getSortField = inject('getSortField') as () => string
+// const setSortField = inject('setSortField') as (arg: string) => void
+
+const { getSortOrder, setSortOrder, getSortField, setSortField } = inject('sortProps') as ISortProps
 
 const cellClass = computed(() => ({
   HeaderCellComp: true,
