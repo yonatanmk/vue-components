@@ -1,6 +1,7 @@
 import type { IPerson, ITableColumn, ISong } from '../../interfaces'
 import LinkCell from '../../components/LinkCell'
 import CheckmarkCell from '../../components/CheckmarkCell'
+import { markRaw } from 'vue';
 
 const booleanSortFunctionGenerator = (field: string) => (row: any) =>{ // FIX TS
   if (row?.[field]?.props?.affirmative === true) return 1;
@@ -139,14 +140,14 @@ export const peopleColumns: ITableColumn[] = [
     name: 'Link',
     index: 7,
     field: 'link',
-    component: LinkCell,
+    component: markRaw(LinkCell),
     sortByFunction: row => row?.link?.props?.text
   },
   {
     name: 'Accepted',
     index: 8,
     field: 'accepted',
-    component: CheckmarkCell,
+    component: markRaw(CheckmarkCell),
     sortByFunction: booleanSortFunctionGenerator('accepted')
   },
 ];

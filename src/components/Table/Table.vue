@@ -81,18 +81,15 @@ export default defineComponent({
       return orderBy(this.filteredRows, [this.sortByFunction, this.defaultSortField || this.backupSortField], [this.sortOrder, this.sortOrder])
     },
     headerRow(): any {
-      return this.columns.reduce((agg: any, col) => {
-        return {
-          ...agg,
-          [col.field]: {
-            props: {
-              name: col.name,
-              field: col.field,
-            }
-          },
-        }
-      }, {
-      } as any);
+      return this.columns.reduce((agg: any, col) => ({
+        ...agg,
+        [col.field]: {
+          props: {
+            name: col.name,
+            field: col.field,
+          }
+        },
+      }), {} as any);
     },
     headerColumns(): ITableColumn[] {
       return this.sortedColumns.map(col => ({

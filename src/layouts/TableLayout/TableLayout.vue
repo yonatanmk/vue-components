@@ -6,6 +6,9 @@
     <div className="TableLayout__container">
       <Table :rows="peopleRows" :columns="peopleColumns" :filters="peopleFilters" defaultSortField="name" backupSortField="name"/>
     </div>
+    <div className="TableLayout__container">
+      <TableComp :rows="peopleRows" :columns="peopleColumns" :filters="peopleFilters" defaultSortField="name" backupSortField="name"/>
+    </div>
     <FilterBar>
       <SearchInput label="Search Songs" placeholder="Name" :search="songSearch" @onSearch="handleSongSearch"/>
     </FilterBar>
@@ -20,8 +23,9 @@ import { defineComponent } from 'vue';
 import FilterBar from '../../components/FilterBar';
 import SearchInput from '../../components/SearchInput';
 import Table from '../../components/Table';
+import TableComp from '../../components/TableComp';
 import { peopleRows, peopleColumns, songRows, songColumns } from './data';
-import type { ITableColumn, ISortOrder, IFilter } from '../../interfaces'
+import type { IFilter } from '../../interfaces'
 import { FILTER_TYPES } from '../../util';
 
 export default defineComponent({
@@ -30,6 +34,7 @@ export default defineComponent({
     FilterBar,
     SearchInput,
     Table,
+    TableComp,
   },
   data() {
     return {
